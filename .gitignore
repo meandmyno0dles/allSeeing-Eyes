@@ -1,0 +1,13 @@
+# .gitignore
+
+__pycache__/
+*.pyc
+*.pyo
+*.zip
+*.tar.gz
+
+venv/
+.DS_Store
+dist/
+*.plasmoid
+.idea/
