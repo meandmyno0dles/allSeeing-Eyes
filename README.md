@@ -64,5 +64,46 @@ Pull requests welcome! Feel free to fork and expand — try dual eyes, blinking 
 
 ---
 
+## Installation
+
+### 🧪 How to Test the KDE X-Eyes Clone Locally
+
+#### ✅ Step 1: Extract the Project
+Unzip the plasmoid package:
+```bash
+unzip kde-xeyes-clone.zip
+```
+
+#### ✅ Step 2: Install Dependencies
+Make sure you have the required packages:
+```bash
+sudo apt install plasma-sdk python3-pyqt5 python3-pyautogui
+```
+
+#### ✅ Step 3: Install the Plasmoid
+From inside the extracted `kde-xeyes-clone/` directory:
+```bash
+plasmapkg2 -t plasmoid -i .
+```
+
+#### ✅ Step 4: Add the Widget
+1. Right-click on your KDE desktop or panel
+2. Click **"Add Widgets"**
+3. Search for **"KDE X-Eyes Clone"**
+4. Drag it to the desktop or panel to activate
+
+#### ✅ Step 5: Test Behavior
+- Move your mouse — the eye should follow you
+- Click — the eye glows briefly
+
+#### 🔁 Update the Plasmoid (After Code Changes)
+```bash
+plasmapkg2 -t plasmoid -u .
+```
+
+#### 🧹 Uninstall if Needed
+```bash
+bash plasmoid-uninstall.sh
+
 ## 🪪 License
 GPL v3
