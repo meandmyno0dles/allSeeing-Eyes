@@ -17,20 +17,6 @@ A KDE Plasma widget (plasmoid) to find them all~! Built with QML, PyQt, and PyAu
 
 ---
 
-## 🛠️ Installation
-
-1. **Install the plasmoid**
-   ```bash
-   plasmapkg2 -t plasmoid -i kde-xeyes-clone.zip
-   ```
-
-2. **To uninstall later**
-   ```bash
-   bash plasmoid-uninstall.sh
-   ```
-
----
-
 ## 🧱 Structure
 ```
 kde-xeyes-clone/
@@ -64,7 +50,7 @@ Pull requests welcome! Feel free to fork and expand — try dual eyes, blinking 
 
 ---
 
-## Installation
+## 🛠️ Installation
 
 ### 🧪 How to Test the KDE X-Eyes Clone Locally
 
