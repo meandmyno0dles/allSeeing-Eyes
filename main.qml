@@ -1,65 +1,77 @@
-// ui/main.qml
 import QtQuick 2.15
+import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick.Controls.Material 2.15
+import QtGraphicalEffects 1.15
+import QtQml 2.15
+import QtQuick.XmlListModel 2.0
+import Qt.labs.platform 1.1
 
-Item {
+Window {
     id: root
-    width: 200
+    visible: true
+    width: 100
     height: 100
+    color: "transparent"
+    flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool
 
-    Rectangle {
-        id: leftEye
-        width: 80; height: 80
-        radius: 40
-        color: "white"
-        border.color: "black"
-        anchors.left: parent.left
-        anchors.leftMargin: 10
-        anchors.verticalCenter: parent.verticalCenter
+    property bool mouseClicked: false
 
-        Rectangle {
-            id: leftPupil
-            width: 20; height: 20
-            radius: 10
-            color: "black"
-            x: Math.min(leftEye.width - width, Math.max(0, (cursorX - leftEye.mapToGlobal(Qt.point(0,0)).x - width/2)))
-            y: Math.min(leftEye.height - height, Math.max(0, (cursorY - leftEye.mapToGlobal(Qt.point(0,0)).y - height/2)))
+    Process {
+        id: pythonBackend
+        command: "/usr/bin/python3"
+        arguments: ["contents/code/main.py"]
+        onStarted: console.log("Python backend started")
+        onErrorOccurred: console.log("Backend error occurred: " + error)
+        Component.onCompleted: start()
+    }
+
+    Item {
+        id: eye
+        width: 96
+        height: 96
+        anchors.centerIn: parent
+
+        Image {
+            id: eyeImage
+            source: "images/sauron1_cleaned.png"
+            width: 96
+            height: 96
+            smooth: true
+            anchors.centerIn: parent
+
+            Behavior on x {
+                NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
+            }
+            Behavior on y {
+                NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
+            }
         }
     }
 
-    Rectangle {
-        id: rightEye
-        width: 80; height: 80
-        radius: 40
-        color: "white"
-        border.color: "black"
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        anchors.verticalCenter: parent.verticalCenter
-
-        Rectangle {
-            id: rightPupil
-            width: 20; height: 20
-            radius: 10
-            color: "black"
-            x: Math.min(rightEye.width - width, Math.max(0, (cursorX - rightEye.mapToGlobal(Qt.point(0,0)).x - width/2)))
-            y: Math.min(rightEye.height - height, Math.max(0, (cursorY - rightEye.mapToGlobal(Qt.point(0,0)).y - height/2)))
-        }
+    Glow {
+        anchors.fill: eye
+        source: eye
+        radius: 10
+        samples: 16
+        color: mouseClicked ? "orange" : "transparent"
+        visible: mouseClicked
     }
-
-    property int cursorX: 0
-    property int cursorY: 0
 
     Timer {
-        interval: 30
-        running: true
-        repeat: true
-        onTriggered: {
-            var pos = PlasmaCore.CursorPos.position
-            cursorX = pos.x
-            cursorY = pos.y
+        id: clickTimer
+        interval: 300
+        running: false
+        repeat: false
+        onTriggered: mouseClicked = false
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onPressed: {
+            mouseClicked = true
+            clickTimer.start()
         }
     }
 }
