@@ -1,4 +1,4 @@
-# allSeeing-Eyes
+# allSeeing-Eyes  |  UNDER CONSTRUCTION~~
 and in the darkness bind them!!~
 # KDE X-Eyes Clone 👁️🔥
 
@@ -50,7 +50,7 @@ Pull requests welcome! Feel free to fork and expand — try dual eyes, blinking 
 
 ---
 
-## 🛠️ Installation
+## 🛠️ Installation  
 
 ### 🧪 How to Test the KDE X-Eyes Clone Locally
 
