@@ -1,0 +1,24 @@
+{
+  "KPlugin": {
+    "Id": "kde-xeyes-clone",
+    "Name": "KDE X-Eyes Clone",
+    "Description": "A minimal eye-tracking plasmoid using PyQt6",
+    "Icon": "preferences-desktop-eye",
+    "License": "GPL",
+    "Version": "1.0",
+    "Website": "https://example.com",
+    "Category": "Fun",
+    "Dependencies": [],
+    "EnabledByDefault": true,
+    "Authors": [
+      {
+        "Name": "Your Name",
+        "Email": "you@example.com"
+      }
+    ]
+  },
+  "Type": "Applet",
+  "X-Plasma-API": "declarativeappletscript",
+  "X-Plasma-MainScript": "ui/main.qml",
+  "X-Plasma-RootPath": "contents/"
+}
